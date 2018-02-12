@@ -1,0 +1,36 @@
+{
+    "SchemaVersion": "1.0.0",
+    "Id": "turnstyle-01",
+    "Version": "0.0.1",
+    "Name": "Turnstyle",
+    "Description": "",
+    "Protocol": "MQTT",
+    "Simulation": {
+        "InitialState": {
+            "online": true,
+            "ticketId": "",
+            "entryTime": ""
+        },
+        "Interval": "00:00:01",
+        "Scripts": [
+            {
+                "Type": "javascript",
+                "Path": "turnstyle-01-state.js"
+            }
+        ]
+    },
+    "Telemetry": [
+        {
+            "Interval": "00:00:01",
+            "MessageTemplate": "{\"ticketId\":${ticketId},\"entryTime\":\"${entryTime}\"}",
+            "MessageSchema": {
+                "Name": "turnstyle-sensors;v1",
+                "Format": "JSON",
+                "Fields": {
+                    "ticketId": "text",
+                    "entryTime": "text"
+                }
+            }
+        }
+    ]
+}
