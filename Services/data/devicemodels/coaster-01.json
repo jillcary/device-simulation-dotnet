@@ -1,0 +1,70 @@
+{
+    "SchemaVersion": "1.0.0",
+    "Id": "coaster-01",
+    "Version": "0.0.1",
+    "Name": "Coaster",
+    "Description": "Roller coaster data for hackathon.",
+    "Protocol": "MQTT",
+    "Simulation": {
+      "InitialState": {
+          "online": true,
+          "rideId": "",
+          "trainId": "",
+          "correlationId": "",
+          "accelX": "",
+          "accelY": "",
+          "accelZ": "",
+          "rotX": "",
+          "rotY": "",
+          "rotZ": "",
+          "deviceTime": "",
+          "passengerCount": "",
+          "eventType": ""
+      },
+        "Interval": "00:00:01",
+        "Scripts": [
+            {
+                "Type": "javascript",
+                "Path": "coaster-01-state.js"
+            }
+        ]
+    },
+    "Telemetry": [
+        {
+            "Interval": "00:00:01",
+            "MessageTemplate": "{\"rideId\":${rideID},\"trainId\":${trainId},\"correlationId\":\"${correlationId}\",\"accelX\":${accelX},\"accelY\":\"${accelY},\"accelZ\":${accelZ},\"rotX\":${rotX},\"rotY\":${rotY},\"rotZ\":${rotZ},\"deviceTime\":${deviceTime}}",
+            "MessageSchema": {
+                "Name": "coaster-sensors;v1",
+                "Format": "JSON",
+                "Fields": {
+                    "rideId": "text",
+                    "trainId": "text",
+                    "correlationId": "text",
+                    "accelX": "double",
+                    "accelY": "double",
+                    "accelZ": "double",
+                    "rotX": "double",
+                    "rotY": "double",
+                    "rotZ": "double",
+                    "deviceTime": "text"
+                }
+            }
+        },
+        {
+            "Interval": "00:00:30",
+            "MessageTemplate": "{\"rideId\":${rideID},\"trainId\":${trainId},\"correlationId\":\"${correlationId}\",\"deviceTime\":${deviceTime},\"passengerCount\":${passengerCount},\"eventType\":${eventType}\"}",
+            "MessageSchema": {
+                "Name": "coaster-sensors;v1",
+                "Format": "JSON",
+                "Fields": {
+                    "rideId": "text",
+                    "trainId": "text",
+                    "correlationId": "text",
+                    "deviceTime": "text",
+                    "passengerCount": "integer",
+                    "eventType": "text"
+                }
+            }
+        }
+    ]
+}
